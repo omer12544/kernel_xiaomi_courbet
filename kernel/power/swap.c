@@ -610,7 +610,7 @@ static int crc32_threadfn(void *data)
 			for (i = 0; i < d->run_threads; i++)
 				*d->crc32 = crc32_le(*d->crc32,
 						d->unc[i], *d->unc_len[i]);
-		atomic_set(&d->stop, 1);
+		atomic_set_release(&d->stop, 1);
 		wake_up(&d->done);
 	}
 	return 0;
